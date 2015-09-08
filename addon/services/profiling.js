@@ -32,7 +32,7 @@ export default Ember.Service.extend({
     return this._timers[label];
   },
 
-  timedRender(label) {
+  profileRender(label) {
     let result = this.startTimer(label);
 
     Ember.run.schedule('afterRender', () => {

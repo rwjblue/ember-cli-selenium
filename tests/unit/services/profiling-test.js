@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:selenium/recorder', {
+moduleFor('service:profiling', {
 
 });
 
@@ -87,7 +87,7 @@ test('stopTimer can be invoked', function(assert) {
   assert.deepEqual(result, expected, 'object is returned');
 });
 
-test('timedRender starts a timer and schedules ending a timer in the afterRender queue', function(assert) {
+test('profileRender starts a timer and schedules ending a timer in the afterRender queue', function(assert) {
   let timeToReturn = 1000;
   let result;
 
@@ -102,7 +102,7 @@ test('timedRender starts a timer and schedules ending a timer in the afterRender
   // start a run loop manually
   Ember.run.begin();
 
-  result = service.timedRender('foo');
+  result = service.profileRender('foo');
 
   assert.deepEqual(result, { start: 1000, end: null }, 'initial result is correct');
 
