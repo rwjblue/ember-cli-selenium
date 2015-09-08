@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { defer } = Ember.RSVP;
+
 export default Ember.Service.extend({
   performance: performance, // jshint ignore:line
   Date: Date, // jshint ignore:line
@@ -19,7 +21,7 @@ export default Ember.Service.extend({
   },
 
   startTimer(label) {
-    return this._timers[label] = { start: this.getTime(), end: null };
+   this._timers[label] = { start: this.getTime(), end: null };
   },
 
   stopTimer(label) {
@@ -28,17 +30,23 @@ export default Ember.Service.extend({
     }
 
     this._timers[label].end = this.getTime();
+  },
 
+  getTimerResult(label) {
     return this._timers[label];
   },
 
-  profileRender(label) {
-    let result = this.startTimer(label);
+  timeRender(label) {
+    let deferred = defer(`timeRender: ${label}`);
+
+    this.startTimer(label);
 
     Ember.run.schedule('afterRender', () => {
       this.stopTimer(label);
+
+      deferred.resolve(this.getTimerResult(label));
     });
 
-    return result;
+    return deferred.promise;
   }
 });
