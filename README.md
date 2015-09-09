@@ -71,6 +71,12 @@ with these items:
 The script should return a promise that resolves when the script is
 complete (typically `return driver.quit();` is all you will need).
 
+## Command Arguments
+
+* `--build` / `--no-build` -- Used to trigger a build (default) or suppress a build (via `--no-build`).
+* `--script=< path relative to project root>` -- The script to require and invoke (defaults to `selenium.js`).
+* `--environment` -- The environment to use when building (defaults to `"production"`).
+
 ## Working on the Addon Itself
 
 ### Installation
