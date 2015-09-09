@@ -46,7 +46,7 @@ module.exports = {
     if (options.build) {
       return this.triggerBuild(options)
         .then(function() {
-          _this.runCommand();
+          return _this.runCommand();
         });
     } else {
       return this.runCommand();
