@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-selenium",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple command to run selenium scripts against ember-cli apps.",
   "directories": {
     "test": "tests"
