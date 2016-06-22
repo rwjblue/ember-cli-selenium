@@ -12,24 +12,21 @@ ember selenium --script=scripts/search-for-webdriver.js
 
 And having:
 
-```
+```js
 // scripts/search-for-webdriver.js
 
 module.exports = function(options) {
   var webdriver = options.webdriver;
   var chrome = options.chrome;
   var until = webdriver.until;
-
   var chromeOptions = new chrome.Options();
+  
   chromeOptions.addArguments(['--incognito']);
 
   var driver = new webdriver.Builder()
-        .forBrowser('chrome')
-        .setChromeOptions(
-          new chrome.Options()
-            .addArguments('--incognito')
-        )
-        .build();
+    .forBrowser('chrome')
+    .setChromeOptions(chromeOptions)
+    .build();
 
   driver.get('https://www.google.com');
 
